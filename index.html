@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Birmingham Twp PD — Sept 2025 Schedule</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Quick-access September 2025 shift schedule — tap Add to Home Screen in Safari to make this an app.">
+  <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+  <header>
+    <h1>Birmingham Twp PD</h1>
+    <p class="subtitle">September 2025 — Quick Schedule (last updated: Aug 12, 2025)</p>
+    <div class="controls">
+      <button id="refreshBtn">Refresh</button>
+      <button id="downloadICS">Download .ics</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="legend">
+      <strong>Legend:</strong> Shift format is <em>start-end NAME</em>. Schedule subject to changes.
+    </section>
+
+    <section id="schedule">
+      <ul class="dates" id="datesList"></ul>
+    </section>
+
+    <footer>
+      <small>To install: open this page in Safari → Share → Add to Home Screen.</small>
+    </footer>
+  </main>
+
+<script>
+const schedule = {
+  "2025-09-01": "19-07 WHITE · 07-19 WOOD",
+  "2025-09-02": "19-07 WHITE · 07-15 WOOD · 15-23 URBANY",
+  "2025-09-03": "23-07 MCCARDLE · 07-15 POT · 15-23 ARNOLD",
+  "2025-09-04": "23-07 MCCARDLE · 07-15 POT · 15-23 ARNOLD",
+  "2025-09-05": "19-07 WHITE · 07-19 WOOD · 16-24 ARNOLD",
+  "2025-09-06": "19-07 WHITE · 07-19 WOOD · 16-24 ARNOLD",
+  "2025-09-07": "19-07 WHITE · 07-19 WOOD",
+  "2025-09-08": "19-07 POT · 07-15 MCCARDLE · 08-16 ARNOLD · 15-23 URBANY",
+  "2025-09-09": "23-07 POT · 07-19 MCCARDLE · 08-16 ARNOLD",
+  "2025-09-10": "19-07 WHITE · 07-19 WOOD · 08-16 ARNOLD",
+  "2025-09-11": "19-07 WHITE · 07-19 WOOD · 08-16 ARNOLD",
+  "2025-09-12": "19-07 POT · 07-19 MCCARDLE · 08-16 ARNOLD",
+  "2025-09-13": "19-07 POT · 07-19 MCCARDLE",
+  "2025-09-14": "19-07 POT · 07-19 MCCARDLE",
+  "2025-09-15": "19-07 WOOD · 07-19 WHITE",
+  "2025-09-16": "19-07 WOOD · 07-15 WHITE · 15-23 ARNOLD",
+  "2025-09-17": "19-07 POT · 07-19 MCCARDLE · 15-23 ARNOLD",
+  "2025-09-18": "23-07 POT · 07-15 MCCARDLE · 15-23 ARNOLD",
+  "2025-09-19": "23-07 WOOD · 07-19 WHITE · 16-24 ARNOLD",
+  "2025-09-20": "19-07 WOOD · 07-19 WHITE · 16-24 ARNOLD",
+  "2025-09-21": "19-07 WOOD · 07-19 WHITE",
+  "2025-09-22": "19-07 MCCARDLE · 07-19 POT · 08-16 ARNOLD",
+  "2025-09-23": "19-07 MCCARDLE · 07-19 POT · 08-16 ARNOLD",
+  "2025-09-24": "19-07 WOOD · 07-15 WHITE · 08-16 ARNOLD",
+  "2025-09-25": "19-07 WOOD · 07-15 WHITE · 08-16 ARNOLD",
+  "2025-09-26": "19-07 MCCARDLE · 07-19 POT · 08-16 ARNOLD",
+  "2025-09-27": "19-07 MCCARDLE · 07-19 POT",
+  "2025-09-28": "19-07 MCCARDLE · 07-19 POT · 08-16 ARNOLD",
+  "2025-09-29": "19-07 WHITE · 07-19 WOOD",
+  "2025-09-30": "19-07 WHITE · 07-19 WOOD · 15-23 ARNOLD"
+};
+
+function render(){
+  const ul = document.getElementById('datesList');
+  ul.innerHTML = '';
+  Object.keys(schedule).forEach(date=>{
+    const li = document.createElement('li');
+    const d = new Date(date);
+    const options = {weekday:'short', month:'short', day:'numeric'};
+    const title = document.createElement('strong');
+    title.textContent = d.toLocaleDateString(undefined, options);
+    const entry = document.createElement('div');
+    entry.className = 'entry';
+    entry.textContent = schedule[date];
+    li.appendChild(title);
+    li.appendChild(entry);
+    ul.appendChild(li);
+  });
+}
+render();
+
+document.getElementById('refreshBtn').addEventListener('click', ()=>location.reload());
+
+document.getElementById('downloadICS').addEventListener('click', ()=>{
+  const lines = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//BirminghamTwpPD//Schedule//EN'];
+  for(const d in schedule){
+    lines.push('BEGIN:VEVENT');
+    lines.push('DTSTART;VALUE=DATE:' + d.replace(/-/g,''));
+    lines.push('SUMMARY:' + schedule[d]);
+    lines.push('UID:' + d + '-btpd@local');
+    lines.push('END:VEVENT');
+  }
+  lines.push('END:VCALENDAR');
+  const blob = new Blob([lines.join('\n')], {type:'text/calendar'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Birmingham_Twp_PD_Sept_2025.ics';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
