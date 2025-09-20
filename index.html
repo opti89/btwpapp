@@ -12,9 +12,15 @@
 </head>
 <body>
 <header>
-  <div class="header-content">
-    <h1>September 2025</h1>
+  <div class="header-left">
     <div id="menu-toggle">&#9776;</div>
+  </div>
+  <div class="header-center">
+    <h1>September 2025</h1>
+    <p>Birmingham Twp PD Schedule</p>
+  </div>
+  <div class="header-right">
+    <img src="placeholder.png" alt="Logo" class="header-logo">
   </div>
   <div id="menu" class="hidden">
     <label for="person-select">Select Your Name:</label>
@@ -30,7 +36,6 @@
     </select>
   </div>
 </header>
-
 <main>
 <table class="calendar">
 <thead>
@@ -91,22 +96,18 @@
 </tbody>
 </table>
 </main>
-
 <footer>
 <small>created by OPTi89 technologies → a division of john's auto repair (pro bono department)</small>
 </footer>
-
 <script>
 const menuToggle = document.getElementById('menu-toggle');
 const menu = document.getElementById('menu');
 const select = document.getElementById('person-select');
 
-// Toggle menu visibility
 menuToggle.addEventListener('click', () => {
   menu.classList.toggle('hidden');
 });
 
-// Load saved selection
 const savedPerson = localStorage.getItem('selectedPerson');
 if (savedPerson) {
   select.value = savedPerson;
