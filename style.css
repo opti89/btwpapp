@@ -5,15 +5,17 @@ body {
 }
 
 
-header .header-row {
+header {
+  background: #0b57a4;
+  color: white;
+}
+
+.header-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #0b57a4;
-  color: white;
   padding: 8px 12px;
 }
-
 
 .header-left, .header-right {
   flex: 0 0 auto;
@@ -24,17 +26,8 @@ header .header-row {
   text-align: center;
 }
 
-.header-center h1 {
-  margin: 0;
-  font-size: 22px;
-}
-
-.header-center p {
-  margin: 0;
-  font-size: 14px;
-  opacity: 0.9;
-}
-
+.header-center h1 { margin: 0; font-size: 22px; }
+.header-center p { margin: 0; font-size: 14px; opacity: 0.9; }
 
 #menu-toggle {
   font-size: 22px;
@@ -42,12 +35,10 @@ header .header-row {
   user-select: none;
 }
 
-
 .header-logo {
   height: 36px;
   width: auto;
 }
-
 
 #menu {
   display: none;
@@ -61,8 +52,8 @@ header .header-row {
   font-size: 12px;
 }
 
-.hidden {
-  display: none;
+#menu.show {
+  display: block;
 }
 
 
