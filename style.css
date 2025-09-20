@@ -1,4 +1,3 @@
-/* Base styles */
 body {
   font-family: Consolas, monospace;
   margin: 0;
@@ -8,21 +7,28 @@ body {
 header {
   background: #0b57a4;
   color: white;
-  padding: 12px;
-  text-align: center;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;  
   position: relative;
 }
 
-h1 { margin: 0; font-size: 22px; }
-p { margin: 0; font-size: 14px; opacity: 0.9; }
+.header-left {
+  flex: 0 0 auto;
+}
 
-
-.header-content {
+.header-center {
+  flex: 1 1 auto;
+  text-align: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  position: relative;
+}
+
+.header-right {
+  flex: 0 0 auto;
 }
 
 #menu-toggle {
@@ -31,10 +37,16 @@ p { margin: 0; font-size: 14px; opacity: 0.9; }
   user-select: none;
 }
 
+.header-logo {
+  height: 36px; 
+  width: auto;
+}
+
 #menu {
   display: none;
-  margin-top: 8px;
   text-align: center;
+  width: 100%;
+  margin-top: 8px;
 }
 
 #menu select {
@@ -45,6 +57,7 @@ p { margin: 0; font-size: 14px; opacity: 0.9; }
 .hidden {
   display: none;
 }
+
 
 
 table.calendar {
