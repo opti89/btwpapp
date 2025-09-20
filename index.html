@@ -6,13 +6,15 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Birmingham Twp PD — Sept 2025 Calendar</title>
-
   
-  <link rel="apple-touch-icon" sizes="180x180" href="patch.png">
+  <link rel="apple-touch-icon" href="patch.png">
   <link rel="apple-touch-icon" sizes="152x152" href="patch.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="patch.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="patch.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="patch.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="patch.png">
 
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <link rel="apple-touch-icon" href="icon-192.png">
   <style>
     body {
       font-family: Consolas, monospace;
@@ -23,63 +25,105 @@
     header {
       background: #0b57a4;
       color: white;
-      padding: 12px;
-      text-align: center;
-      position: relative; 
     }
 
-    h1 { margin: 0; font-size: 22px; }
-    p { margin: 0; font-size: 14px; opacity: 0.9; }
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+    }
 
-    
+    .header-left, .header-right {
+      flex: 0 0 auto;
+    }
+
+    .header-center {
+      flex: 1 1 auto;
+      text-align: center;
+    }
+
+    .header-center h1 { margin: 0; font-size: 22px; }
+    .header-center p { margin: 0; font-size: 14px; opacity: 0.9; }
+
     #menu-toggle {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
       font-size: 22px;
       cursor: pointer;
       user-select: none;
     }
 
-    
     .header-logo {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
       height: 36px;
       width: auto;
     }
 
-    
     #menu {
       display: none;
-      position: absolute;
-      left: 12px;
-      top: 100%;
+      text-align: center;
       background: #0b57a4;
-      padding: 6px 0;
-      z-index: 100;
-      text-align: left;
-      border: 1px solid #055a9e;
+      padding: 8px 0;
+    }
+
+    #menu select {
+      font-family: Consolas, monospace;
+      font-size: 12px;
     }
 
     #menu.show {
       display: block;
     }
 
-    #menu label {
-      font-size: 11px;
-      color: white;
-      margin-left: 8px;
-      display: block;
+    table.calendar {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      border: 2px solid #333;
     }
 
-    #menu select {
-      font-family: Consolas, monospace;
+    .calendar th {
+      background: #eee;
+      padding: 6px;
+      font-size: 12px;
+      border: 1px solid #999;
+    }
+
+    .calendar td {
+      border: 1px solid #999;
+      vertical-align: top;
+      height: 100px;
+      padding: 4px;
+      background: white;
+    }
+
+    .calendar td.empty {
+      background: #f0f0f0;
+    }
+
+    .day {
+      font-weight: bold;
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: #0b57a4;
+    }
+
+    .shifts {
       font-size: 11px;
-      margin: 4px 8px 8px 8px;
+      line-height: 1.3;
+      color: #222;
+      white-space: pre-wrap;
+    }
+
+    .shifts span {
+      display: block;
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+
+    .shifts span:last-child { margin-bottom: 0; }
+
+    .highlighted {
+      background: yellow;
+      color: black;
     }
 
     footer {
@@ -92,12 +136,18 @@
 </head>
 <body>
   <header>
-    <div id="menu-toggle">&#9776;</div>
-
-    <h1>September 2025</h1>
-    <p>Birmingham Twp PD Schedule</p>
-
-    <img src="patch.png" alt="Logo" class="header-logo">
+    <div class="header-row">
+      <div class="header-left">
+        <div id="menu-toggle">&#9776;</div>
+      </div>
+      <div class="header-center">
+        <h1>September 2025</h1>
+        <p>Birmingham Twp PD Schedule</p>
+      </div>
+      <div class="header-right">
+        <img src="patch.png" alt="Logo" class="header-logo">
+      </div>
+    </div>
 
     <div id="menu">
       <label for="person-select">Select Your Name:</label>
@@ -122,7 +172,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+       <tr>
           <td class='empty'></td>
 <td><div class='day'>1</div><div class='shifts'><span class="WHITE">19-07 WHITE</span><span class="WOOD">07-19 WOOD</span></div></td>
 <td><div class='day'>2</div><div class='shifts'><span class="WHITE">19-07 WHITE</span><span class="WOOD">07-15 WOOD</span><span class="URBANY">15-23 URBANY</span></div></td>
@@ -191,14 +241,25 @@
     const savedPerson = localStorage.getItem('selectedPerson');
     if (savedPerson) {
       select.value = savedPerson;
-      
+      highlightShifts(savedPerson);
     }
 
     select.addEventListener('change', () => {
       const person = select.value;
       localStorage.setItem('selectedPerson', person);
-      
+      highlightShifts(person);
     });
+
+    function highlightShifts(person) {
+      document.querySelectorAll('.shifts span').forEach(span => {
+        span.classList.remove('highlighted');
+      });
+      if (person) {
+        document.querySelectorAll(`.shifts span.${person}`).forEach(span => {
+          span.classList.add('highlighted');
+        });
+      }
+    }
   </script>
 </body>
 </html>
