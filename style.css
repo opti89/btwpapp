@@ -129,6 +129,16 @@ table.calendar {
   margin: 20px 0 10px 0;
 }
 
+.login-container {
+  width: 300px;           
+  margin: 60px auto 0;     
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
 .footer-credit {
   display: block;       
   clear: both;          
