@@ -321,5 +321,21 @@
       }
     }
   </script>
+
+  <script>
+    // Optional URL-based highlight
+    const urlParams = new URLSearchParams(window.location.search);
+    const officer = urlParams.get("user");
+
+    if (officer) {
+      const elements = document.querySelectorAll(`span.${officer.toUpperCase()}`);
+      elements.forEach(el => {
+        el.style.backgroundColor = "#ffe066";
+        el.style.fontWeight = "bold";
+        el.style.padding = "2px 4px";
+        el.style.borderRadius = "3px";
+      });
+    }
+  </script>
 </body>
 </html>
