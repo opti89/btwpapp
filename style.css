@@ -4,32 +4,37 @@ body {
   background: #f7f7f8;
 }
 
-header {
+
+header .header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: #0b57a4;
   color: white;
   padding: 8px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: nowrap;  
-  position: relative;
 }
 
-.header-left {
+
+.header-left, .header-right {
   flex: 0 0 auto;
 }
 
 .header-center {
   flex: 1 1 auto;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
-.header-right {
-  flex: 0 0 auto;
+.header-center h1 {
+  margin: 0;
+  font-size: 22px;
 }
+
+.header-center p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
 
 #menu-toggle {
   font-size: 22px;
@@ -37,16 +42,18 @@ header {
   user-select: none;
 }
 
+
 .header-logo {
-  height: 36px; 
+  height: 36px;
   width: auto;
 }
+
 
 #menu {
   display: none;
   text-align: center;
-  width: 100%;
-  margin-top: 8px;
+  background: #0b57a4;
+  padding: 8px 0;
 }
 
 #menu select {
@@ -57,7 +64,6 @@ header {
 .hidden {
   display: none;
 }
-
 
 
 table.calendar {
