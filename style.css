@@ -130,10 +130,11 @@ table.calendar {
 }
 
 .footer-credit {
-  font-size: 0.9em;
-  color: #888;
-  text-align: center;
-  margin-top: 10px;
+  text-align: center;   
+  margin-top: 12px;     
+  font-size: 12px;
+  color: #666;
+  font-family: Consolas, monospace;
 }
 
 footer {
