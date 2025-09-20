@@ -129,6 +129,13 @@ table.calendar {
   margin: 20px 0 10px 0;
 }
 
+.attribution {
+  font-size: 0.9em;
+  color: #888;
+  text-align: center;
+  margin-top: 10px;
+}
+
 footer {
   text-align: center;
   padding: 8px;
