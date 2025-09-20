@@ -101,12 +101,12 @@ const menuToggle = document.getElementById('menu-toggle');
 const menu = document.getElementById('menu');
 const select = document.getElementById('person-select');
 
-
+// Toggle menu visibility
 menuToggle.addEventListener('click', () => {
   menu.classList.toggle('hidden');
 });
 
-
+// Load saved selection
 const savedPerson = localStorage.getItem('selectedPerson');
 if (savedPerson) {
   select.value = savedPerson;
