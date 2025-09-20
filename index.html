@@ -12,19 +12,22 @@
 </head>
 <body>
 <header>
-  <div class="header-left">
-    <div id="menu-toggle">&#9776;</div>
+  <div class="header-row">
+    <div class="header-left">
+      <div id="menu-toggle">&#9776;</div>
+    </div>
+
+    <div class="header-center">
+      <h1>September 2025</h1>
+      <p>Birmingham Twp PD Schedule</p>
+    </div>
+
+    <div class="header-right">
+      <img src="placeholder.png" alt="Logo" class="header-logo">
+    </div>
   </div>
 
-  <div class="header-center">
-    <h1>September 2025</h1>
-    <p>Birmingham Twp PD Schedule</p>
-  </div>
-
-  <div class="header-right">
-    <img src="placeholder.png" alt="Logo" class="header-logo">
-  </div>
-
+  
   <div id="menu" class="hidden">
     <label for="person-select">Select Your Name:</label>
     <select id="person-select">
@@ -103,36 +106,39 @@
 <small>created by OPTi89 technologies → a division of john's auto repair (pro bono department)</small>
 </footer>
 <script>
-const menuToggle = document.getElementById('menu-toggle');
-const menu = document.getElementById('menu');
-const select = document.getElementById('person-select');
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    const select = document.getElementById('person-select');
 
-menuToggle.addEventListener('click', () => {
-  menu.classList.toggle('hidden');
-});
-
-const savedPerson = localStorage.getItem('selectedPerson');
-if (savedPerson) {
-  select.value = savedPerson;
-  highlightShifts(savedPerson);
-}
-
-select.addEventListener('change', () => {
-  const person = select.value;
-  localStorage.setItem('selectedPerson', person);
-  highlightShifts(person);
-});
-
-function highlightShifts(person) {
-  document.querySelectorAll('.shifts span').forEach(span => {
-    span.classList.remove('highlighted');
-  });
-  if (person) {
-    document.querySelectorAll(`.shifts span.${person}`).forEach(span => {
-      span.classList.add('highlighted');
+    
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
     });
-  }
-}
-</script>
+
+    
+    const savedPerson = localStorage.getItem('selectedPerson');
+    if (savedPerson) {
+      select.value = savedPerson;
+      highlightShifts(savedPerson);
+    }
+
+    
+    select.addEventListener('change', () => {
+      const person = select.value;
+      localStorage.setItem('selectedPerson', person);
+      highlightShifts(person);
+    });
+
+    function highlightShifts(person) {
+      document.querySelectorAll('.shifts span').forEach(span => {
+        span.classList.remove('highlighted');
+      });
+      if (person) {
+        document.querySelectorAll(`.shifts span.${person}`).forEach(span => {
+          span.classList.add('highlighted');
+        });
+      }
+    }
+  </script>
 </body>
 </html>
