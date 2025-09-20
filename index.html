@@ -20,38 +20,34 @@
       background: #f7f7f8;
     }
 
-    
     header {
       background: #0b57a4;
       color: white;
-    }
-
-    .header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 12px;
-    }
-
-    .header-left, .header-right {
-      flex: 0 0 auto;
-    }
-
-    .header-center {
-      flex: 1 1 auto;
+      padding: 12px;
       text-align: center;
+      position: relative; 
     }
 
-    .header-center h1 { margin: 0; font-size: 22px; }
-    .header-center p { margin: 0; font-size: 14px; opacity: 0.9; }
+    h1 { margin: 0; font-size: 22px; }
+    p { margin: 0; font-size: 14px; opacity: 0.9; }
 
+    
     #menu-toggle {
-      font-size: 24px;
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 22px;
       cursor: pointer;
       user-select: none;
     }
 
+    
     .header-logo {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
       height: 36px;
       width: auto;
     }
@@ -59,9 +55,14 @@
     
     #menu {
       display: none;
+      position: absolute;
+      left: 12px;
+      top: 100%;
       background: #0b57a4;
       padding: 6px 0;
+      z-index: 100;
       text-align: left;
+      border: 1px solid #055a9e;
     }
 
     #menu.show {
@@ -69,10 +70,10 @@
     }
 
     #menu label {
-      font-size: 11px; 
+      font-size: 11px;
+      color: white;
       margin-left: 8px;
       display: block;
-      color: white;
     }
 
     #menu select {
@@ -91,18 +92,12 @@
 </head>
 <body>
   <header>
-    <div class="header-row">
-      <div class="header-left">
-        <div id="menu-toggle">&#9776;</div>
-      </div>
-      <div class="header-center">
-        <h1>September 2025</h1>
-        <p>Birmingham Twp PD Schedule</p>
-      </div>
-      <div class="header-right">
-        <img src="patch.png" alt="Logo" class="header-logo">
-      </div>
-    </div>
+    <div id="menu-toggle">&#9776;</div>
+
+    <h1>September 2025</h1>
+    <p>Birmingham Twp PD Schedule</p>
+
+    <img src="patch.png" alt="Logo" class="header-logo">
 
     <div id="menu">
       <label for="person-select">Select Your Name:</label>
@@ -181,7 +176,7 @@
   </main>
 
   <footer>
-    <small>created by OPTi89 technologies → a division of john's auto repair (pro bono division)</small>
+    <small>created by OPTi89 technologies → a division of john's auto repair (pro bono department)</small>
   </footer>
 
   <script>
