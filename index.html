@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>login</title>
+  <title>Login</title>
   <style>
-    body {
+    body.login-page {
       font-family: Consolas, monospace;
       margin: 0;
       padding: 0;
       background: #f4f4f4;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
@@ -65,9 +66,17 @@
       margin-top: 10px;
       display: none;
     }
+
+    .footer-credit {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 8px;
+      color: #666;
+      font-family: Consolas, monospace;
+    }
   </style>
 </head>
-<body>
+<body class="login-page">
   <div class="login-container">
     <h1>LOGIN JAWN</h1>
     <form id="loginForm">
@@ -76,14 +85,13 @@
       <button type="submit">enter</button>
       <p class="error" id="errorMsg">Invalid login. Try again.</p>
     </form>
-</div>
+  </div>
+
   <p class="footer-credit">
     created by OPTi89 technologies → a division of john's auto repair (pro bono department)
   </p>
-  </main>
 
   <script>
-    
     const officers = {
       "mccardle": "mccardle1",
       "pot": "pot2",
@@ -96,12 +104,10 @@
 
     document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
-
       const user = document.getElementById("username").value.trim().toLowerCase();
       const pass = document.getElementById("password").value.trim();
 
       if (officers[user] && officers[user] === pass) {
-        
         window.location.href = "schedule.html?user=" + encodeURIComponent(user);
       } else {
         document.getElementById("errorMsg").style.display = "block";
