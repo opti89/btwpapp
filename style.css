@@ -163,4 +163,9 @@ footer {
   .calendar td { height: auto; padding: 0; }
   .day { margin-bottom: 0; }
   .shifts { line-height: 1.1; white-space: normal; }
+  .login-container {
+    width: 90%;          
+    max-width: 300px;    
+    padding: 15px;       
+  }
 }
