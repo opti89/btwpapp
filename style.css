@@ -46,9 +46,12 @@ header {
 }
 
 .header-logo {
-  height: 36px;
-  max-height: calc(36px - env(safe-area-inset-top));
+  height: 36px;     
   width: auto;
+  display: block;   
+  margin: 0 auto;   
+}
+
 }
 
 #menu {
