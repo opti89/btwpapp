@@ -140,11 +140,9 @@ table.calendar {
 }
 
 .footer-credit {
-  display: block;       
-  clear: both;          
+  margin-top: 20px; 
   text-align: center;
-  margin-top: 8px;
-  font-size: 10px;
+  font-size: 8px;
   color: #666;
   font-family: Consolas, monospace;
 }
