@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>65schedule</title>
@@ -15,124 +16,6 @@
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <style>
-    body {
-      font-family: Consolas, monospace;
-      margin: 0;
-      background: #f7f7f8;
-    }
-
-    header {
-      background: #0b57a4;
-      color: white;
-    }
-
-    .header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 12px;
-    }
-
-    .header-left, .header-right {
-      flex: 0 0 auto;
-    }
-
-    .header-center {
-      flex: 1 1 auto;
-      text-align: center;
-    }
-
-    .header-center h1 { margin: 0; font-size: 14px; opacity: 0.9; }
-    .header-center p { margin: 0; font-size: 20px;  }
-
-    #menu-toggle {
-      font-size: 22px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .header-logo {
-      height: 36px;
-      width: auto;
-    }
-
-    #menu {
-      display: none;
-      text-align: center;
-      background: #0b57a4;
-      padding: 8px 0;
-    }
-
-    #menu select {
-      font-family: Consolas, monospace;
-      font-size: 12px;
-    }
-
-    #menu.show {
-      display: block;
-    }
-
-    table.calendar {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-      border: 2px solid #333;
-    }
-
-    .calendar th {
-      background: #eee;
-      padding: 6px;
-      font-size: 12px;
-      border: 1px solid #999;
-    }
-
-    .calendar td {
-      border: 1px solid #999;
-      vertical-align: top;
-      height: 100px;
-      padding: 4px;
-      background: white;
-    }
-
-    .calendar td.empty {
-      background: #f0f0f0;
-    }
-
-    .day {
-      font-weight: bold;
-      font-size: 13px;
-      margin-bottom: 4px;
-      color: #0b57a4;
-    }
-
-    .shifts {
-      font-size: 11px;
-      line-height: 1.3;
-      color: #222;
-      white-space: pre-wrap;
-    }
-
-    .shifts span {
-      display: block;
-      line-height: 1.3;
-      margin-bottom: 2px;
-    }
-
-    .shifts span:last-child { margin-bottom: 0; }
-
-    .highlighted {
-      background: yellow;
-      color: black;
-    }
-
-    footer {
-      text-align: center;
-      padding: 8px;
-      font-size: 12px;
-      color: #666;
-    }
-  </style>
 </head>
 <body>
   <header>
