@@ -149,6 +149,10 @@ table.calendar {
   text-align: center;
 }
 
+.login-container {
+  outline: 2px solid red;
+}
+
 input,
 button {
   width: 100%;
