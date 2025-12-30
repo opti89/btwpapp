@@ -139,7 +139,7 @@ table.calendar {
 }
 
 .login-container {
-  width: 100%;
+  width: calc(100% - 24px);
   max-width: 300px;
   margin: 60px auto 0;
   padding: 20px;
