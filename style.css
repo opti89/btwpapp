@@ -1,4 +1,13 @@
-body {
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body { 
   font-family: Consolas, monospace;
   margin: 0;
   background: #f7f7f8;
@@ -8,7 +17,8 @@ body {
 main h1 {
   text-align: center;
   font-family: Consolas, monospace;
-  font-size: 14px; opacity: 0.9;
+  font-size: 14px;
+  opacity: 0.9;
   color: #0b57a4;
   margin: 12px 0 6px 0;
 }
@@ -52,8 +62,6 @@ header {
   margin: 0 auto;   
 }
 
-}
-
 #menu {
   display: none;
   text-align: center;
@@ -69,7 +77,6 @@ header {
 #menu.show {
   display: block;
 }
-
 
 table.calendar {
   width: 100%;
@@ -117,13 +124,12 @@ table.calendar {
   padding: 0; 
 }
 
-
 .highlighted {
   background-color: rgba(255, 255, 0, 0.3);
 }
 
 .month-header {
-  background: #0b57a4;  /* same blue as header */
+  background: #0b57a4;
   color: white;
   text-align: center;
   padding: 8px;
@@ -133,13 +139,20 @@ table.calendar {
 }
 
 .login-container {
-  width: 300px;           
-  margin: 60px auto 0;     
+  width: 100%;
+  max-width: 300px;
+  margin: 60px auto 0;
   padding: 20px;
   background: white;
   border-radius: 8px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
   text-align: center;
+}
+
+input,
+button {
+  width: 100%;
+  max-width: 100%;
 }
 
 .footer-credit {
@@ -150,7 +163,6 @@ table.calendar {
   font-family: Consolas, monospace;
 }
 
-
 footer {
   text-align: center;
   padding: 8px;
@@ -158,14 +170,11 @@ footer {
   color: #666;
 }
 
-
 @media screen and (max-width: 480px) {
   .calendar td { height: auto; padding: 0; }
   .day { margin-bottom: 0; }
   .shifts { line-height: 1.1; white-space: normal; }
   .login-container {
-    width: 90%;          
-    max-width: 300px;    
-    padding: 15px;       
+    padding: 15px;
   }
 }
